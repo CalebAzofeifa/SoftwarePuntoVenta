@@ -138,6 +138,43 @@ namespace DAL
 
             }
         }
+        //nota, el dataset solo es utilizado para traer la informacion de la base de datos y la monta en el programa para mostrarla
+        public void GuardarProducto(Producto pProd)
+        {
+            try
+            {
+                //se instancia la conexion donde se envian los parametros de información al servidor de db por medio 
+                // del string de conexion
+                _connection = new SqlConnection(this.StringDeConexion);
+                _connection.Open();
+                //se instancia el comando 
+                _command = new SqlCommand();
+                //se asigna la conexion
+                _command.Connection = _connection;
+                //se indica el tipo de comando
+                _command.CommandType = CommandType.StoredProcedure;
+                //se indica el proceso de la base de datos a utilizar
+                _command.CommandText = "[Sp_Ins_Productos]";
+                //se asignan los valores a cada parametro requerido al procedimiento almacenado
+                _command.Parameters.AddWithValue("@CodBarra", pProd.CodigoBarra);
+                _command.Parameters.AddWithValue("@Descrip", pProd.Descripcion);
+                _command.Parameters.AddWithValue("@PrecComp", pProd.PrecioCompra);
+                _command.Parameters.AddWithValue("@Imp", pProd.Impuesto);
+                //se ejecuta la transaccion por medio del comando
+                _command.ExecuteNonQuery();
+                //una vez finalizado la transaccion se liberan los recursos y se cierra la conexion
+                _connection.Close();  
+                _connection.Dispose();
+                _command.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
 
     }//ClaseCerrada
 }//Cierre del namespace
