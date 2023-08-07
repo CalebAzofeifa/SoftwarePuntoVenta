@@ -63,7 +63,30 @@ namespace TareaBuscador_Progra_CalebAzofeifa
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Txtnames.Text = "";
+            try
+            {
+                this.MostrarUIUser();
+                //permite actualizar la lista de productos después de incluir nuevos productos
+                this.BuscarUser("");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MostrarUIUser()
+        {
+            try
+            {
+                FRMUI_Usuarios frmuser = new FRMUI_Usuarios();
+                frmuser.ShowDialog();
+                frmuser.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }//cierre de la clase
 }//cierre del namespace

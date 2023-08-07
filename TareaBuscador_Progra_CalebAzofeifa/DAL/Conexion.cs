@@ -174,6 +174,30 @@ namespace DAL
             }
         }
 
+        public void GuardarUsuario(Usuario uUser)
+        {
+            try
+            {
+                _connection = new SqlConnection(this.StringDeConexion);
+                _connection.Open();
+                _command = new SqlCommand();
+                _command.Connection = _connection;
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "[Sp_Ins_Usuarios]";
+                _command.Parameters.AddWithValue("@Email", uUser.Email);
+                _command.Parameters.AddWithValue("@FullName", uUser.NombreCompleto);
+                _command.Parameters.AddWithValue("@PassW", uUser.password);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _connection.Dispose();
+                _command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
 
     }//ClaseCerrada
