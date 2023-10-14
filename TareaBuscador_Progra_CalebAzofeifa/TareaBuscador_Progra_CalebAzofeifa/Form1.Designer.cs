@@ -286,9 +286,11 @@
             // 
             // clientesToolStripMenuItem
             // 
+            this.clientesToolStripMenuItem.Image = global::TareaBuscador_Progra_CalebAzofeifa.Properties.Resources._16__User_;
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
             this.clientesToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
             this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -631,6 +633,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Clientes";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel3
             // 
@@ -676,7 +679,7 @@
             this.cerrarSesiónToolStripMenuItem1,
             this.salirToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(220, 122);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(220, 94);
             // 
             // herramientasToolStripMenuItem1
             // 

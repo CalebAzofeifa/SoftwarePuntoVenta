@@ -164,5 +164,43 @@ namespace TareaBuscador_Progra_CalebAzofeifa
         {
             Application.Exit();
         }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.MostrarBuscadorClientes();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void MostrarBuscadorClientes()
+        {
+            try
+            {
+                VentanaBuscadorClientes frmClientes = new VentanaBuscadorClientes();
+                frmClientes.ShowDialog();
+                frmClientes.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.MostrarBuscadorClientes();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } //cierre clase
 } //cierre namespace

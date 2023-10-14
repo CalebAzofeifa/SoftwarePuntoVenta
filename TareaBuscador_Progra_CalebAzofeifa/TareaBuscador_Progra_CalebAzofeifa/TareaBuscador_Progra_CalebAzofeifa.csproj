@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRMUI_Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMUI_Clientes.Designer.cs">
+      <DependentUpon>FRMUI_Clientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRMUI_Products.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,12 @@
     <Compile Include="VentanaBuscadorProductos.Designer.cs">
       <DependentUpon>VentanaBuscadorProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="VentanaBuscadorClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentanaBuscadorClientes.Designer.cs">
+      <DependentUpon>VentanaBuscadorClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaBuscadorUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +98,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMUI_Clientes.resx">
+      <DependentUpon>FRMUI_Clientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMUI_Products.resx">
       <DependentUpon>FRMUI_Products.cs</DependentUpon>
@@ -105,6 +120,9 @@
     </Compile>
     <EmbeddedResource Include="VentanaBuscadorProductos.resx">
       <DependentUpon>VentanaBuscadorProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaBuscadorClientes.resx">
+      <DependentUpon>VentanaBuscadorClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaBuscadorUsuarios.resx">
       <DependentUpon>VentanaBuscadorUsuarios.cs</DependentUpon>
@@ -200,6 +218,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\16 %28Calculator%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16 %28Delete%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16 %28Edit%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16 %28Delete%291.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16 %28Tools%291.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16 %28User%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

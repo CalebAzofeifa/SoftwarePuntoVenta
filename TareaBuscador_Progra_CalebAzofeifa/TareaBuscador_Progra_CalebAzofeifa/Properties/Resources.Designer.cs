@@ -73,6 +73,26 @@ namespace TareaBuscador_Progra_CalebAzofeifa.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _16__Delete_ {
+            get {
+                object obj = ResourceManager.GetObject("16 (Delete)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _16__Delete_1 {
+            get {
+                object obj = ResourceManager.GetObject("16 (Delete)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _16__Doc_excel_ {
             get {
                 object obj = ResourceManager.GetObject("16 (Doc excel)", resourceCulture);
@@ -103,6 +123,16 @@ namespace TareaBuscador_Progra_CalebAzofeifa.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _16__Edit_ {
+            get {
+                object obj = ResourceManager.GetObject("16 (Edit)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _16__Exit_ {
             get {
                 object obj = ResourceManager.GetObject("16 (Exit)", resourceCulture);
@@ -116,6 +146,26 @@ namespace TareaBuscador_Progra_CalebAzofeifa.Properties {
         internal static System.Drawing.Bitmap _16__Tools_ {
             get {
                 object obj = ResourceManager.GetObject("16 (Tools)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _16__Tools_1 {
+            get {
+                object obj = ResourceManager.GetObject("16 (Tools)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _16__User_ {
+            get {
+                object obj = ResourceManager.GetObject("16 (User)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

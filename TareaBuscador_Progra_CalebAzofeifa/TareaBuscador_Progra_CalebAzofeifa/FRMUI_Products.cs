@@ -18,7 +18,11 @@ namespace TareaBuscador_Progra_CalebAzofeifa
         private Producto objProduc = null;
         //objeto conexion
         private Conexion objConexion = null;
+        //lo que determina si se modifica o se añade un producto nuevo
+        public int funcion = 0;
 
+        //variable para controlar la ID del producto
+        public int IDProducto = 0;
 
         public FRMUI_Products()
         {
@@ -55,8 +59,17 @@ namespace TareaBuscador_Progra_CalebAzofeifa
         {
             try
             {
-                this.GuardarProducto();
-                MessageBox.Show("Producto registrado","Proceso realizado", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                if (this.funcion  == 0) //quiere decir si es el proceso guardar
+                {
+                    this.GuardarProducto();
+                    MessageBox.Show("Producto registrado", "Proceso realizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else //proceso modificar
+                {
+                    this.Modificar();
+                    MessageBox.Show("Producto modificado", "Proceso realizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
                 this.Close();
             }
             catch (Exception ex)
@@ -65,7 +78,56 @@ namespace TareaBuscador_Progra_CalebAzofeifa
             }
         }
 
+        private void FRMUI_Products_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                //si es 1 quiere decir que es modificar, si es 0 es añadir nuevo producto
+                if (funcion == 1)
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        public void CargarDatosProducto(Producto temp)
+        {
+            try
+            {
+                //se rellena el front end con los datos del object
+                this.IDProducto = temp.ID;
+                this.TxtCodBarra.Text = temp.CodigoBarra;
+                this.TxtDescrip.Text = temp.Descripcion;
+                this.TxtPrecComp.Text = temp.PrecioCompra.ToString();
+                this.TxtImp.Text = temp.Impuesto.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void Modificar()
+        {
+            try
+            {
+                Producto temp = new Producto();
+                temp.ID = this.IDProducto; //id del producto a modificar
+                temp.CodigoBarra = this.TxtCodBarra.Text;
+                temp.Descripcion = this.TxtDescrip.Text;
+                temp.PrecioCompra = decimal.Parse(this.TxtPrecComp.Text);
+                temp.Impuesto = decimal.Parse(this.TxtImp.Text);
+                this.objConexion.ModificarProducto(temp);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }//cierre de clase
 }//cierre del namespace

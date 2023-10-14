@@ -9,14 +9,15 @@ using System.Data.SqlClient;
 using BLL;
 using Microsoft.Win32;
 using System.Data;
+using System.Linq.Expressions;
 
 namespace DAL
 {
     public class Conexion
     {
         private SqlConnection _connection;
-        private SqlCommand _command;    
-        private SqlDataReader _reader;  
+        private SqlCommand _command;
+        private SqlDataReader _reader;
         private SqlDataAdapter _adapter;
         private string StringDeConexion;
 
@@ -43,9 +44,9 @@ namespace DAL
                 //tipo de comando
                 _command.CommandType = System.Data.CommandType.Text;
                 //se indica el transac-sql a ejecutar
-                _command.CommandText = "select Email,NombreCompleto,Password,FechaRegistro,Estado from TblUsuarios where Email = '" + pEmail + "' and Password = '"+ pPW +"'";
+                _command.CommandText = "select Email,NombreCompleto,Password,FechaRegistro,Estado from TblUsuarios where Email = '" + pEmail + "' and Password = '" + pPW + "'";
                 //se ejecuta el comando y se almacena los datos leidos
-                _reader = _command.ExecuteReader(); 
+                _reader = _command.ExecuteReader();
 
                 if (_reader.Read())
                 {
@@ -69,7 +70,7 @@ namespace DAL
 
                 return temp;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -92,7 +93,7 @@ namespace DAL
                 _adapter = new SqlDataAdapter();
                 _adapter.SelectCommand = _command;
                 _adapter.Fill(datos);
-                _connection.Close();   
+                _connection.Close();
                 _command.Dispose();
                 _adapter.Dispose();
 
@@ -163,7 +164,7 @@ namespace DAL
                 //se ejecuta la transaccion por medio del comando
                 _command.ExecuteNonQuery();
                 //una vez finalizado la transaccion se liberan los recursos y se cierra la conexion
-                _connection.Close();  
+                _connection.Close();
                 _connection.Dispose();
                 _command.Dispose();
 
@@ -199,6 +200,166 @@ namespace DAL
 
         }
 
+        public void EliminarProducto(int id)
+        {
+            try
+            {
+                _connection = new SqlConnection(this.StringDeConexion);
+                _connection.Open();
+
+                _command = new SqlCommand();
+                _command.Connection = _connection;
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "[SP_Del_Productos]";
+                _command.Parameters.AddWithValue("@Id", id);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _connection.Dispose();
+                _command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void ModificarProducto(Producto pProducto)
+        {
+            try
+            {
+                _connection = new SqlConnection(this.StringDeConexion);
+                _connection.Open();
+                _command = new SqlCommand();
+                _command.Connection = _connection;
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "[SP_Upd_Productos]";
+                _command.Parameters.AddWithValue("@Id", pProducto.ID);
+                _command.Parameters.AddWithValue("@CodBar", pProducto.CodigoBarra);
+                _command.Parameters.AddWithValue("@Descrip", pProducto.Descripcion);
+                _command.Parameters.AddWithValue("@PreComp", pProducto.PrecioCompra);
+                _command.Parameters.AddWithValue("@Imp", pProducto.Impuesto);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _connection.Dispose();
+                _command.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet BuscarClientes(string name)
+        {
+            try
+            {
+                DataSet data = new DataSet();
+
+                _connection = new SqlConnection(StringDeConexion);
+
+                _connection.Open();
+                _command = new SqlCommand();
+                _command.Connection = _connection;
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "[Sp_Cns_Clientes]";
+
+
+                _command.Parameters.AddWithValue("@Nombre", name);
+                _adapter = new SqlDataAdapter();
+                _adapter.SelectCommand = _command;
+                _adapter.Fill(data);
+                _connection.Close();
+                _command.Dispose();
+                _adapter.Dispose();
+
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+        public void GuardarCliente(Clientes cCliente)
+        {
+            try
+            {
+                _connection = new SqlConnection(this.StringDeConexion);
+                _connection.Open();
+                _command = new SqlCommand();
+                _command.Connection = _connection;
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "[Sp_Ins_Clientes]";
+                _command.Parameters.AddWithValue("@Cedul", cCliente.Cedula);
+                _command.Parameters.AddWithValue("@FullN", cCliente.Nombre);
+                _command.Parameters.AddWithValue("@Telef", cCliente.Telefono);
+                _command.Parameters.AddWithValue("@LCredito", cCliente.LCredito);
+                _command.Parameters.AddWithValue("@Mail", cCliente.Email);
+                _command.Parameters.AddWithValue("@FechaN", cCliente.FechaNacimiento);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _connection.Dispose();
+                _command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void EliminarCliente(string Cedula)
+        {
+            try
+            {
+                _connection = new SqlConnection(this.StringDeConexion);
+                _connection.Open();
+
+                _command = new SqlCommand();
+                _command.Connection = _connection;
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "[Sp_Del_Clientes]";
+                _command.Parameters.AddWithValue("@Cedula", Cedula);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _connection.Dispose();
+                _command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void ModificarCliente(Clientes cCliente)
+        {
+            try
+            {
+                _connection = new SqlConnection(this.StringDeConexion);
+                _connection.Open();
+                _command = new SqlCommand();
+                _command.Connection = _connection;
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "[SP_Upd_Clientes]";
+                _command.Parameters.AddWithValue("@Cedula", cCliente.Cedula);
+                _command.Parameters.AddWithValue("@FullN", cCliente.Nombre);
+                _command.Parameters.AddWithValue("@Telef", cCliente.Telefono);
+                _command.Parameters.AddWithValue("@LCredito", cCliente.LCredito);
+                _command.Parameters.AddWithValue("@Mail", cCliente.Email);
+                _command.Parameters.AddWithValue("@FechaN", cCliente.FechaNacimiento);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _connection.Dispose();
+                _command.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }//ClaseCerrada
 }//Cierre del namespace
